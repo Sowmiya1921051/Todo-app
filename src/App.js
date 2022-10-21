@@ -42,7 +42,23 @@ const addTodo = (text) =>
   console.log(newTodos)
   setTodos(newTodos)
 }
-
+  const removeTodo =(id)=>
+  {
+    let updatedTodos=[...todos].filter((todo) => todo.id !== id)
+    setTodos(updatedTodos)
+  }
+  const completeTodo =(id)=>
+  {
+    let updatedTodos=todos.map((todo) =>
+    {
+      if(todo.id ===id)
+      {
+        todo.completed =! todo.completed
+      }
+      return todo
+    })
+    setTodos(updatedTodos)
+  }
   return (
     <div className='todo-app'>
       <h1>Todo List</h1>
@@ -51,7 +67,7 @@ const addTodo = (text) =>
       {todos.map((todo) =>
       {
         return(
-          <TodoItem key={todo.id} todo={todo}/>
+          <TodoItem  removeTodo={removeTodo} completeTodo={completeTodo}  key={todo.id} todo={todo}/>
         )
       }
       )}

@@ -1,11 +1,13 @@
 import React from 'react'
-import {RiCloseCircleLine} from './react-icons/ri'
+
 
 function TodoItem(props) {
+  const {todo , removeTodo, completeTodo}=props
   return (
-    <div>
+    <div className={"todo.completed" ? "todo-row complete" : "todo-row"}>
         {props.todo.text}
-        <RiCloseCircleLine />
+        <button onClick={()=>removeTodo(todo.id)}>Remove</button>
+        <button onClick={()=>completeTodo(todo.id)}>Update</button>
     </div>
   )
 }
